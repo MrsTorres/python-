@@ -1,6 +1,8 @@
 import boto3
 
+
 ec2 = boto3.resource('ec2', region_name='us-east-1')
+ec2.Instance('i-0bcff0540f6c6f743').stop()
 
 def stopped_environment_instances(ec2):
    running_environment_instances = ec2.instances.filter(Filters=[{'Name':'instance-state-name', 'Values': ['running']},{'Name': 'tag:Environment','Values':['Dev']}])
